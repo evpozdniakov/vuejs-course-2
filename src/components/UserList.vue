@@ -1,0 +1,37 @@
+<template>
+  <table class="table">
+    <tbody>
+      <tr v-for="user in users" :key="user.id">
+        <td>{{ user.name }}</td>
+        <td>({{ user.username }})</td>
+        <td>
+          <button
+            type="button"
+            class="button is-small is-outlined"
+            @click="openUserProfile(user.id)"
+          >
+            Edit
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</template>
+
+<script>
+export default {
+  props: {
+    users: {
+      type: Array,
+      default: function() {
+        return [];
+      }
+    }
+  },
+  methods: {
+    openUserProfile: function(id) {
+      location.href = `./edit-user.html#${id}`;
+    }
+  }
+};
+</script>
