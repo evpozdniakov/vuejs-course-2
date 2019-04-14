@@ -2,8 +2,8 @@
   <table class="table">
     <tbody>
       <tr v-for="user in users" :key="user.id">
-        <td>{{ user.name }}</td>
-        <td>({{ user.username }})</td>
+        <td>{{ user.firstName }}</td>
+        <td>({{ user.lastName }})</td>
         <td>
           <button
             type="button"
