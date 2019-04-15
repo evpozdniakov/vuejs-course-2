@@ -8,10 +8,18 @@
 
     <div class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item" href="/">Home</a>
-        <a class="navbar-item" href="/users">Users</a>
-        <a class="navbar-item" href="/account">Account</a>
+        <router-link class="navbar-item" to="/" exact>Home</router-link>
+        <router-link class="navbar-item" to="/users">Users</router-link>
+        <router-link class="navbar-item" to="/account">Account</router-link>
       </div>
     </div>
   </nav>
 </template>
+
+<script></script>
+
+<style>
+a.navbar-item.router-link-active {
+  font-weight: 900;
+}
+</style>
