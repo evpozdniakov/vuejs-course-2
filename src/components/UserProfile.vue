@@ -3,16 +3,18 @@
     <div v-if="user">
       <h2 class="subtitle">{{ userFullName }}</h2>
       <form>
-        <p>
-          First name:
-          <br />
-          <input :value="user.firstName" />
-        </p>
-        <p>
-          Last name:
-          <br />
-          <input :value="user.lastName" />
-        </p>
+        <div class="field">
+          <label class="label">First name:</label>
+          <div class="control">
+            <input class="input" :value="user.firstName" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Last name:</label>
+          <div class="control">
+            <input class="input" :value="user.lastName" />
+          </div>
+        </div>
       </form>
     </div>
     <div v-else>
