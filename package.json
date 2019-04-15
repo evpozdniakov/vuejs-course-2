@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "rest-api": "json-server --watch assets/db.json"
+    "rest-api": "json-server --watch src/assets/db.json"
   },
   "dependencies": {
     "@vue/eslint-config-prettier": "^4.0.1",
