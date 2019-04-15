@@ -14,12 +14,12 @@ import UserList from '@/components/UserList.vue';
 export default {
   name: 'Home',
   components: {
-    'user-list': UserList
+    'user-list': UserList,
   },
   data() {
     return {
       isLoading: true,
-      users: []
+      users: [],
     };
   },
   mounted() {
@@ -34,7 +34,7 @@ export default {
           this.isLoading = false;
           console.log('Data loading completed.');
         });
-    }
-  }
+    },
+  },
 };
 </script>

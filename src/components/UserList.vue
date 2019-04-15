@@ -25,13 +25,13 @@ export default {
       type: Array,
       default() {
         return [];
-      }
-    }
+      },
+    },
   },
   methods: {
     openUserProfile(id) {
       this.$router.push(`/account?id=${id}`);
-    }
-  }
+    },
+  },
 };
 </script>

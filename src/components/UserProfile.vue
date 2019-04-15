@@ -28,14 +28,14 @@ export default {
       type: Object,
       default() {
         return {};
-      }
-    }
+      },
+    },
   },
   computed: {
     userFullName() {
       const { firstName, lastName } = this.user;
       return `${firstName} ${lastName}`;
-    }
-  }
+    },
+  },
 };
 </script>

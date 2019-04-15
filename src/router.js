@@ -11,19 +11,19 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
     },
     {
       path: '/users',
       name: 'users',
       component: () =>
-        import(/* webpackChunkName: "userAccount" */ '@/views/Users.vue')
+        import(/* webpackChunkName: "userAccount" */ '@/views/Users.vue'),
     },
     {
       path: '/account',
       name: 'userAccount',
       component: () =>
-        import(/* webpackChunkName: "userAccount" */ '@/views/UserAccount.vue')
-    }
-  ]
+        import(/* webpackChunkName: "userAccount" */ '@/views/UserAccount.vue'),
+    },
+  ],
 });
