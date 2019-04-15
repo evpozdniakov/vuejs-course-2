@@ -1,17 +1,17 @@
 <template>
   <div class="user-account">
     <h1>User Account</h1>
-    <UserProfile :user="user" />
+    <user-profile :user="user" />
   </div>
 </template>
 
 <script>
-import UserProfile from "@/components/UserProfile.vue";
+import UserProfile from '@/components/UserProfile.vue';
 
 export default {
-  name: "User",
+  name: 'User',
   components: {
-    UserProfile
+    'user-profile': UserProfile
   },
   data() {
     return {
@@ -33,11 +33,11 @@ export default {
     readUserIdFromUrl() {
       const { id } = this.$route.query;
 
-      if (id !== "") {
+      if (id !== '') {
         return Promise.resolve(id);
       }
 
-      return Promise.reject(new Error("Unable to read user id"));
+      return Promise.reject(new Error('Unable to read user id'));
     }
   }
 };

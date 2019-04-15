@@ -1,23 +1,23 @@
 <template>
   <div class="home">
     <h1 class="title">{{ title }}</h1>
-    <UserList :users="users" />
+    <user-list :users="users" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
-import UserList from "@/components/UserList.vue";
+import UserList from '@/components/UserList.vue';
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
-    UserList
+    'user-list': UserList
   },
   data() {
     return {
-      title: "Список пользователей",
+      title: 'Список пользователей',
       users: []
     };
   },
@@ -26,11 +26,11 @@ export default {
   },
   methods: {
     loadUsers() {
-      return fetch("http://localhost:3000/users")
+      return fetch('http://localhost:3000/users')
         .then(response => response.json())
         .then(data => {
           this.users = data;
-          console.log("Data loading completed.");
+          console.log('Data loading completed.');
         });
     }
   }
