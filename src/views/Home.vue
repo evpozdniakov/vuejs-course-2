@@ -1,18 +1,38 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1 class="title">{{ title }}</h1>
+    <UserList :users="users" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+// import HelloWorld from "@/components/HelloWorld.vue";
+import UserList from "@/components/UserList.vue";
 
 export default {
-  name: "home",
+  name: "Home",
   components: {
-    HelloWorld
+    UserList
+  },
+  data() {
+    return {
+      title: "Список пользователей",
+      users: []
+    };
+  },
+  mounted() {
+    this.loadUsers().catch(console.warn);
+  },
+  methods: {
+    loadUsers() {
+      return fetch("http://localhost:3000/users")
+        .then(response => response.json())
+        .then(data => {
+          this.users = data;
+          console.log("Data loading completed.");
+        });
+    }
   }
 };
 </script>

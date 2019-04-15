@@ -23,14 +23,14 @@ export default {
   props: {
     users: {
       type: Array,
-      default: function() {
+      default() {
         return [];
       }
     }
   },
   methods: {
-    openUserProfile: function(id) {
-      location.href = `./edit-user.html#${id}`;
+    openUserProfile(id) {
+      this.$router.push(`/account?id=${id}`);
     }
   }
 };

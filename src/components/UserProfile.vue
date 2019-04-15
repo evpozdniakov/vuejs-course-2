@@ -1,17 +1,22 @@
 <template>
   <div class="user-profile">
     <div v-if="user">
-      <h2 class="subtitle">{{ user.name }}</h2>
+      <h2 class="subtitle">{{ userFullName }}</h2>
       <form>
         <p>
-          Имя:
+          First name:
           <br />
-          <input :value="user.name" />
+          <input :value="user.firstName" />
+        </p>
+        <p>
+          Last name:
+          <br />
+          <input :value="user.lastName" />
         </p>
       </form>
     </div>
     <div v-else>
-      <p>Данные загружаются</p>
+      <p>Loading...</p>
     </div>
   </div>
 </template>
@@ -21,7 +26,15 @@ export default {
   props: {
     user: {
       type: Object,
-      required: true
+      default() {
+        return {};
+      }
+    }
+  },
+  computed: {
+    userFullName() {
+      const { firstName, lastName } = this.user;
+      return `${firstName} ${lastName}`;
     }
   }
 };
