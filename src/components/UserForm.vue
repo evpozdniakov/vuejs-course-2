@@ -8,6 +8,10 @@
       v-model="user.lastName"
       label="Last name"
     />
+    <number-field
+      v-model="user.age"
+      label="Age"
+    />
     <field-text
       v-model="user.email"
       label="Email"
@@ -32,12 +36,14 @@
 <script>
 import FieldText from '@/components/common/FieldText.vue';
 import FieldCheckbox from '@/components/common/FieldCheckbox.vue';
+import NumberField from '@/components/common/NumberField.vue';
 
 export default {
   name: 'UserForm',
   components: {
     'field-text': FieldText,
     'field-checkbox': FieldCheckbox,
+    'number-field': NumberField,
   },
   model: {
     prop: 'user',
