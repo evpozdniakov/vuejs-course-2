@@ -23,9 +23,7 @@ export default {
   props: {
     users: {
       type: Array,
-      default() {
-        return [];
-      },
+      required: true,
     },
   },
   methods: {
