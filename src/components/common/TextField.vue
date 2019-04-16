@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'FieldText',
+  name: 'TextField',
   props: {
     label: {
       type: String,

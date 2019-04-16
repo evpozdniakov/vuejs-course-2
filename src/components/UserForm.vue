@@ -1,10 +1,10 @@
 <template>
   <form class="user-form">
-    <field-text
+    <text-field
       v-model="user.firstName"
       label="First name"
     />
-    <field-text
+    <text-field
       v-model="user.lastName"
       label="Last name"
     />
@@ -12,17 +12,17 @@
       v-model="user.age"
       label="Age"
     />
-    <field-text
+    <text-field
       v-model="user.email"
       label="Email"
       type="email"
     />
-    <field-text
+    <text-field
       v-model="user.phone"
       label="Phone"
       type="phone"
     />
-    <field-text
+    <text-field
       v-model="user.address"
       label="Address"
     />
@@ -34,14 +34,14 @@
 </template>
 
 <script>
-import FieldText from '@/components/common/FieldText.vue';
+import TextField from '@/components/common/TextField.vue';
 import FieldCheckbox from '@/components/common/FieldCheckbox.vue';
 import NumberField from '@/components/common/NumberField.vue';
 
 export default {
   name: 'UserForm',
   components: {
-    'field-text': FieldText,
+    'text-field': TextField,
     'field-checkbox': FieldCheckbox,
     'number-field': NumberField,
   },
