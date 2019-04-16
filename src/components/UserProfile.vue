@@ -28,9 +28,7 @@ export default {
   props: {
     user: {
       type: Object,
-      default() {
-        return {};
-      },
+      required: true,
     },
   },
   computed: {
