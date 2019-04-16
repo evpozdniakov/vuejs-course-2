@@ -1,11 +1,21 @@
 <template>
   <div class="user-account">
-    <h1 class="title">User Account</h1>
-    <div v-if="isLoading">Loading...</div>
-    <div v-else-if="isError" class="notification is-warning">
+    <h1 class="title">
+      User Account
+    </h1>
+    <div v-if="isLoading">
+      Loading...
+    </div>
+    <div
+      v-else-if="isError"
+      class="notification is-warning"
+    >
       User not found
     </div>
-    <user-profile v-else :user="user" />
+    <user-profile
+      v-else
+      :user="user"
+    />
   </div>
 </template>
 

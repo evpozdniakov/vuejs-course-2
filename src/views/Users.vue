@@ -1,8 +1,15 @@
 <template>
   <div class="users">
-    <h1 class="title">Users</h1>
-    <div v-if="isLoading">Loading...</div>
-    <user-list v-else :users="users" />
+    <h1 class="title">
+      Users
+    </h1>
+    <div v-if="isLoading">
+      Loading...
+    </div>
+    <user-list
+      v-else
+      :users="users"
+    />
   </div>
 </template>
 

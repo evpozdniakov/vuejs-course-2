@@ -1,7 +1,10 @@
 <template>
   <table class="table">
     <tbody>
-      <tr v-for="user in users" :key="user.id">
+      <tr
+        v-for="user in users"
+        :key="user.id"
+      >
         <td>{{ user.firstName }}</td>
         <td>({{ user.lastName }})</td>
         <td>
