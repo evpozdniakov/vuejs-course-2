@@ -1,21 +1,10 @@
 <template>
   <div class="user-profile">
     <div v-if="user">
-      <h2 class="subtitle">{{ userFullName }}</h2>
-      <form>
-        <div class="field">
-          <label class="label">First name:</label>
-          <div class="control">
-            <input class="input" :value="user.firstName" />
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Last name:</label>
-          <div class="control">
-            <input class="input" :value="user.lastName" />
-          </div>
-        </div>
-      </form>
+      <h2 class="subtitle">
+        {{ userFullName }}
+      </h2>
+      <user-form v-model="user" />
     </div>
     <div v-else>
       <p>Loading...</p>
@@ -24,7 +13,12 @@
 </template>
 
 <script>
+import UserForm from '@/components/UserForm.vue';
+
 export default {
+  components: {
+    'user-form': UserForm,
+  },
   props: {
     user: {
       type: Object,
