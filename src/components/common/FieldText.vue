@@ -3,8 +3,9 @@
     <label class="label">{{ label }}:</label>
     <div class="control">
       <input
-        v-model="value"
+        v-model="fieldValue"
         class="input"
+        :type="type"
       >
     </div>
   </div>
@@ -18,9 +19,25 @@ export default {
       type: String,
       required: true,
     },
+    type: {
+      type: String,
+      default() {
+        return 'text';
+      },
+    },
     value: {
       type: String,
       required: true,
+    },
+  },
+  data() {
+    return {
+      fieldValue: this.value,
+    }
+  },
+  watch: {
+    fieldValue() {
+      this.$emit('input', this.fieldValue)
     },
   },
 };
