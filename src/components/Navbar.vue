@@ -15,9 +15,21 @@
           width="28"
         >
       </a>
+
+      <a
+        role="button"
+        class="navbar-burger"
+        aria-label="menu"
+        aria-expanded="false"
+        @click="toggleBurger"
+      >
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
+      </a>
     </div>
 
-    <div class="navbar-menu">
+    <div :class="navbarMenuClassName">
       <div class="navbar-start">
         <router-link
           class="navbar-item"
@@ -43,7 +55,25 @@
   </nav>
 </template>
 
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      isNavbarActive: false,
+    }
+  },
+  computed: {
+    navbarMenuClassName() {
+      return `navbar-menu ${this.isNavbarActive ? 'is-active' : ''}`
+    },
+  },
+  methods: {
+    toggleBurger() {
+      this.isNavbarActive = !this.isNavbarActive;
+    },
+  },
+}
+</script>
 
 <style>
 a.navbar-item.router-link-active {
