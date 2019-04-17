@@ -12,10 +12,17 @@
     >
       User not found
     </div>
-    <user-profile
+    <div
       v-else
-      :user="user"
-    />
+      class="columns"
+    >
+      <div class="column is-two-thirds">
+        <user-profile
+          
+          :user="user"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
