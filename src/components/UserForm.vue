@@ -26,7 +26,7 @@
       v-model="user.address"
       label="Address"
     />
-    <field-checkbox
+    <checkbox-field
       v-model="user.isActive"
       label="Active"
     />
@@ -35,14 +35,14 @@
 
 <script>
 import TextField from '@/components/common/TextField.vue';
-import FieldCheckbox from '@/components/common/FieldCheckbox.vue';
+import CheckboxField from '@/components/common/CheckboxField.vue';
 import NumberField from '@/components/common/NumberField.vue';
 
 export default {
   name: 'UserForm',
   components: {
     'text-field': TextField,
-    'field-checkbox': FieldCheckbox,
+    'checkbox-field': CheckboxField,
     'number-field': NumberField,
   },
   model: {
