@@ -1,5 +1,8 @@
 <template>
-  <form class="user-form">
+  <form
+    class="user-form"
+    @submit.prevent="updateUser"
+  >
     <text-field
       v-model="user.firstName"
       label="First name"
@@ -35,6 +38,11 @@
       disabled
       label="Registered"
     />
+    <div class="field">
+      <button class="button is-primary">
+        Update
+      </button>
+    </div>
   </form>
 </template>
 
@@ -50,19 +58,20 @@ export default {
     'checkbox-field': CheckboxField,
     'number-field': NumberField,
   },
-  model: {
-    prop: 'user',
-    event: 'update',
-  },
   props: {
-    user: {
+    value: {
       type: Object,
       required: true,
     },
   },
-  watch: {
-    user() {
-      this.$emit('update', user)
+  data() {
+    return {
+      user: {...this.value},
+    }
+  },
+  methods: {
+    updateUser() {
+      this.$emit('update', this.user)
     },
   },
 };

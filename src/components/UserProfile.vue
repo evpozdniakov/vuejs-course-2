@@ -20,7 +20,10 @@
         <h2 class="subtitle">
           {{ userFullName }}
         </h2>
-        <user-form v-model="user" />
+        <user-form
+          :value="user"
+          @update="updateUser"
+        />
       </div>
     </div>
   </div>
@@ -68,6 +71,9 @@ export default {
     loadUserById(id) {
       return axios.get(`http://localhost:3000/users/${id}`)
         .then(response => response.data)
+    },
+    updateUser(updatedUserData) {
+      return axios.patch(`http://localhost:3000/users/${updatedUserData.id}`, updatedUserData)
     },
   },
 };
