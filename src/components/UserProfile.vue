@@ -68,12 +68,15 @@ export default {
       });
   },
   methods: {
+    userApiUrl(id) {
+      return `http://localhost:3000/users/${id}`;
+    },
     loadUserById(id) {
-      return axios.get(`http://localhost:3000/users/${id}`)
+      return axios.get(userApiUrl(id))
         .then(response => response.data)
     },
     updateUser(updatedUserData) {
-      return axios.patch(`http://localhost:3000/users/${updatedUserData.id}`, updatedUserData)
+      return axios.patch(userApiUrl(updatedUserData.id), updatedUserData)
     },
   },
 };
