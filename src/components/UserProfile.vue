@@ -72,11 +72,15 @@ export default {
       return `http://localhost:3000/users/${id}`;
     },
     loadUserById(id) {
-      return axios.get(userApiUrl(id))
+      return axios.get(this.userApiUrl(id))
         .then(response => response.data)
     },
     updateUser(updatedUserData) {
-      return axios.patch(userApiUrl(updatedUserData.id), updatedUserData)
+      return axios
+        .patch(this.userApiUrl(updatedUserData.id), updatedUserData)
+        .then(() => {
+          this.$router.push('/users');
+        })
     },
   },
 };
