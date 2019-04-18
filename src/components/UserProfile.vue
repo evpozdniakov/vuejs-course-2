@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import UserForm from '@/components/UserForm.vue';
 
 export default {
@@ -65,15 +66,8 @@ export default {
   },
   methods: {
     loadUserById(id) {
-      return fetch(`http://localhost:3000/users/${id}`)
-        .then(response => response.json())
-        .then(data => {
-          if (data.id === id) {
-            return data;
-          }
-
-          throw new Error('User not found');
-        });
+      return axios.get(`http://localhost:3000/users/${id}`)
+        .then(response => response.data)
     },
   },
 };
