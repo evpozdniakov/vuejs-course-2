@@ -10,7 +10,7 @@
         href="/"
       >
         <img
-          src="/logo.png"
+          src="/assets/logo.png"
           height="28"
           width="28"
         >
