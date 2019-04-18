@@ -30,6 +30,11 @@
       v-model="user.isActive"
       label="Active"
     />
+    <text-field
+      v-model="user.registered"
+      disabled
+      label="Registered"
+    />
   </form>
 </template>
 

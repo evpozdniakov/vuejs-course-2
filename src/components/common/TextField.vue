@@ -5,6 +5,8 @@
       <input
         v-model="fieldValue"
         class="input"
+        :readonly="readonly"
+        :disabled="disabled"
         :type="type"
       >
     </div>
@@ -15,9 +17,21 @@
 export default {
   name: 'TextField',
   props: {
+    disabled: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    },
     label: {
       type: String,
       required: true,
+    },
+    readonly: {
+      type: Boolean,
+      default() {
+        return false;
+      },
     },
     type: {
       type: String,
