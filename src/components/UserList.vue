@@ -8,13 +8,12 @@
         <td>{{ user.firstName }}</td>
         <td>({{ user.lastName }})</td>
         <td>
-          <button
-            type="button"
+          <router-link
             class="button is-small is-outlined"
-            @click="openUserProfile(user.id)"
+            :to="linkToUserAccount(user.id)"
           >
             Edit
-          </button>
+          </router-link>
         </td>
       </tr>
     </tbody>
@@ -30,8 +29,8 @@ export default {
     },
   },
   methods: {
-    openUserProfile(id) {
-      this.$router.push(`/account?id=${id}`);
+    linkToUserAccount(id) {
+      return `/account/${id}`
     },
   },
 };

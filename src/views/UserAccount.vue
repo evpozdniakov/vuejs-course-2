@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     userId() {
-      const { id = '0' } = this.$route.query || {};
+      const { id = '' } = this.$route.params || {};
 
       return id;
     },

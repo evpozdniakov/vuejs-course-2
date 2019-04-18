@@ -20,7 +20,7 @@ export default new Router({
         import(/* webpackChunkName: "userAccount" */ '@/views/Users.vue'),
     },
     {
-      path: '/account',
+      path: '/account/:id',
       name: 'userAccount',
       component: () =>
         import(/* webpackChunkName: "userAccount" */ '@/views/UserAccount.vue'),
