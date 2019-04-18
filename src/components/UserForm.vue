@@ -60,5 +60,10 @@ export default {
       required: true,
     },
   },
+  watch: {
+    user() {
+      this.$emit('update', user)
+    },
+  },
 };
 </script>

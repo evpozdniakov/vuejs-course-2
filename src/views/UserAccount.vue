@@ -3,26 +3,9 @@
     <h1 class="title">
       User Account
     </h1>
-    <div v-if="isLoading">
-      Loading...
-    </div>
-    <div
-      v-else-if="isError"
-      class="notification is-warning"
-    >
-      User not found
-    </div>
-    <div
-      v-else
-      class="columns"
-    >
-      <div class="column is-two-thirds">
-        <user-profile
-          
-          :user="user"
-        />
-      </div>
-    </div>
+    <user-profile
+      :user-id="userId"
+    />
   </div>
 </template>
 
@@ -34,39 +17,11 @@ export default {
   components: {
     'user-profile': UserProfile,
   },
-  data() {
-    return {
-      user: null,
-      isLoading: true,
-      isError: false,
-    };
-  },
-  mounted() {
-    this.readUserIdFromUrl()
-      .then(this.loadUserById)
-      .then(data => {
-        this.user = data;
-        this.isLoading = false;
-      })
-      .catch(error => {
-        this.isLoading = false;
-        this.isError = error;
-      });
-  },
-  methods: {
-    loadUserById(id) {
-      return fetch(`http://localhost:3000/users/${id}`).then(response =>
-        response.json(),
-      );
-    },
-    readUserIdFromUrl() {
-      const { id } = this.$route.query;
+  computed: {
+    userId() {
+      const { id = '0' } = this.$route.query || {};
 
-      if (id) {
-        return Promise.resolve(id);
-      }
-
-      return Promise.reject(new Error('Unable to read user id'));
+      return id;
     },
   },
 };
