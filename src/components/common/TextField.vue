@@ -20,9 +20,7 @@ export default {
   props: {
     disabled: {
       type: Boolean,
-      default() {
-        return false;
-      },
+      default: false,
     },
     label: {
       type: String,
@@ -30,9 +28,7 @@ export default {
     },
     readonly: {
       type: Boolean,
-      default() {
-        return false;
-      },
+      default: false,
     },
     type: {
       type: String,
