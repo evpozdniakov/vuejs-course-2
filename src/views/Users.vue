@@ -3,8 +3,17 @@
     <h1 class="title">
       Users
     </h1>
-    <div v-if="isLoading">
+    <div
+      v-if="isLoading"
+      class="notification is-info"
+    >
       Loading...
+    </div>
+    <div
+      v-else-if="noUsersFound"
+      class="notification is-success"
+    >
+      No users has been found.
     </div>
     <user-list
       v-else
@@ -28,6 +37,11 @@ export default {
       isLoading: true,
       users: [],
     };
+  },
+  computed: {
+    noUsersFound() {
+      return this.isLoading === false && this.users.length === 0
+    },
   },
   mounted() {
     this.loadUsers().catch(console.warn);
