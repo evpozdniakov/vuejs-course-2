@@ -57,23 +57,25 @@ export default {
     },
   },
   mounted() {
-    this.loadUserById(this.userId)
-      .then(data => {
-        this.user = data;
-        this.isLoading = false;
-      })
-      .catch(error => {
-        this.isLoading = false;
-        this.isError = error;
-      });
+    this.loadUserById(this.userId);
   },
   methods: {
     userApiUrl(id) {
       return `http://localhost:3000/users/${id}`;
     },
     loadUserById(id) {
-      return axios.get(this.userApiUrl(id))
+      return axios
+        .get(this.userApiUrl(id))
         .then(response => response.data)
+        .then(data => {
+          this.user = data;
+          this.isLoading = false;
+        })
+        .catch(error => {
+          this.isLoading = false;
+          this.isError = error;
+          console.warn(error);
+        });
     },
     updateUser(updatedUserData) {
       return axios
@@ -81,6 +83,7 @@ export default {
         .then(() => {
           this.$router.push('/users');
         })
+        .catch(console.warn);
     },
   },
 };

@@ -51,7 +51,7 @@ export default {
     },
   },
   mounted() {
-    this.loadUsers().catch(console.warn);
+    this.loadUsers();
   },
   methods: {
     loadUsers() {
@@ -63,7 +63,8 @@ export default {
           this.users = data;
           this.isLoading = false;
           console.log('Data loading completed.');
-        });
+        })
+        .catch(console.warn);
     },
   },
 };
