@@ -64,10 +64,10 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      user: {...this.value},
-    }
+  computed: {
+    user() {
+      return {...this.value}
+    },
   },
   methods: {
     updateUser() {

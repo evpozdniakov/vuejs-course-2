@@ -22,7 +22,7 @@
         </h2>
         <user-form
           :value="user"
-          @update="updateUser"
+          @update="saveUserData"
         />
       </div>
     </div>
@@ -55,17 +55,20 @@ export default {
       const { firstName, lastName } = this.user;
       return `${firstName} ${lastName}`;
     },
+    userApiUrl() {
+      return `http://localhost:3000/users/${this.userId}`;
+    },
+  },
+  watch: {
+    userId: 'loadUserData',
   },
   mounted() {
-    this.loadUserById(this.userId);
+    this.loadUserData();
   },
   methods: {
-    userApiUrl(id) {
-      return `http://localhost:3000/users/${id}`;
-    },
-    loadUserById(id) {
+    loadUserData() {
       return axios
-        .get(this.userApiUrl(id))
+        .get(this.userApiUrl)
         .then(response => response.data)
         .then(data => {
           this.user = data;
@@ -77,9 +80,9 @@ export default {
           console.warn(error);
         });
     },
-    updateUser(updatedUserData) {
+    saveUserData(updatedUserData) {
       return axios
-        .patch(this.userApiUrl(updatedUserData.id), updatedUserData)
+        .patch(this.userApiUrl, updatedUserData)
         .then(() => {
           this.$router.push('/users');
         })
