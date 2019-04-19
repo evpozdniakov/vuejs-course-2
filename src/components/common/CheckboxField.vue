@@ -2,9 +2,10 @@
   <div class="field">
     <label class="checkbox">
       <input
-        v-model="isChecked"
         type="checkbox"
         class="checkbox"
+        :checked="isChecked"
+        @input="update"
       >
       {{ label }}
     </label>
@@ -23,14 +24,14 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      isChecked: this.value,
-    }
-  },
-  watch: {
+  computed: {
     isChecked() {
-      this.$emit('input', this.isChecked)
+      return this.value;
+    },
+  },
+  methods: {
+    update(ev) {
+      this.$emit('input', ev.target.checked)
     },
   },
 };

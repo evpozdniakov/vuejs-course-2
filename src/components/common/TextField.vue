@@ -3,11 +3,12 @@
     <label class="label">{{ label }}:</label>
     <div class="control">
       <input
-        v-model="fieldValue"
         class="input"
         :readonly="readonly"
         :disabled="disabled"
         :type="type"
+        :value="fieldValue"
+        @input="update"
       >
     </div>
   </div>
@@ -44,14 +45,14 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      fieldValue: this.value,
-    }
-  },
-  watch: {
+  computed: {
     fieldValue() {
-      this.$emit('input', this.fieldValue)
+      return this.value;
+    },
+  },
+  methods: {
+    update(ev) {
+      this.$emit('input', ev.target.value)
     },
   },
 };

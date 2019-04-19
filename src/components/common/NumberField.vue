@@ -3,9 +3,10 @@
     <label class="label">{{ label }}:</label>
     <div class="control">
       <input
-        v-model="fieldValue"
         class="input"
         type="number"
+        :value="fieldValue"
+        @input="update"
       >
     </div>
   </div>
@@ -20,18 +21,20 @@ export default {
       required: true,
     },
     value: {
-      type: Number,
+      type: [String, Number],
       required: true,
     },
   },
-  data() {
-    return {
-      fieldValue: this.value,
-    }
-  },
-  watch: {
+  computed: {
     fieldValue() {
-      this.$emit('input', this.fieldValue)
+      return this.value;
+    },
+  },
+  methods: {
+    update(ev) {
+      const stringValue = ev.target.value;
+      const numericValue = stringValue.length ? Number(stringValue) : '';
+      this.$emit('input', numericValue);
     },
   },
 };
