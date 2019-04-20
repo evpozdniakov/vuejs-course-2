@@ -2,9 +2,18 @@
   <div>
     <list-pagination
       v-model="ippConfig"
-      :items-total-number="users.length"
+      :items-total-number="usersTotalNumber"
     />
-    <table class="table">
+    <div
+      v-if="isLoading"
+      class="notification is-info"
+    >
+      Loading...
+    </div>
+    <table
+      v-else
+      class="table"
+    >
       <thead>
         <tr>
           <th>Name</th>
@@ -17,7 +26,7 @@
       </thead>
       <tbody>
         <tr
-          v-for="user in applyPagination(users)"
+          v-for="user in users"
           :key="user.id"
         >
           <td>{{ getUserFullName(user) }}</td>
@@ -41,14 +50,15 @@
 
 <script>
 import ListPagination from '@/components/common/ListPagination.vue';
+import * as utils from '@/lib/utils';
 
 export default {
   components: {
     'list-pagination': ListPagination,
   },
   props: {
-    users: {
-      type: Array,
+    usersTotalNumber: {
+      type: Number,
       required: true,
     },
   },
@@ -58,26 +68,38 @@ export default {
         currentPage: 1,
         itemsPerPage: 10,
       },
+      isLoading: null,
+      users: null,
     };
   },
-  computed: {
-    itemsTotalNumber() {
-      debugger;
-      return this.users.length;
-    },
+  watch: {
+    'ippConfig.currentPage': 'loadUsers',
+    'ippConfig.itemsPerPage': 'loadUsers',
+  },
+  mounted() {
+    this.loadUsers();
   },
   methods: {
-    applyPagination(items) {
-      const from =
-        (this.ippConfig.currentPage - 1) * this.ippConfig.itemsPerPage;
-
-      return items.slice(from, from + this.ippConfig.itemsPerPage);
-    },
     getUserFullName(user) {
       return `${user.firstName} ${user.lastName}`;
     },
     linkToUserAccount(id) {
       return `/account/${id}`;
+    },
+    loadUsers() {
+      debugger;
+      this.isLoading = true;
+
+      const { currentPage, itemsPerPage } = this.ippConfig;
+
+      return fetch(`http://localhost:3000/users?_page=${currentPage}&_limit=${itemsPerPage}`)
+        .then(response => response.json())
+        .then(utils.delay())
+        .then(data => {
+          this.users = data;
+          this.isLoading = false;
+        })
+        .catch(console.warn);
     },
   },
 };
