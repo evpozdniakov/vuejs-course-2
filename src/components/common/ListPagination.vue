@@ -41,16 +41,26 @@
 
 <script>
 export default {
+  model: {
+    prop: 'config',
+    event: 'changeConfig',
+  },
   props: {
+    config: {
+      type: Object,
+      required: true,
+      validator(config) {
+        if (typeof config.itemsPerPage !== 'number') {
+          throw new Error('itemsPerPage must be a number');
+        }
+        if (typeof config.currentPage !== 'number') {
+          throw new Error('currentPage must be a number');
+        }
+
+        return true;
+      },
+    },
     itemsTotalNumber: {
-      type: Number,
-      required: true,
-    },
-    itemsPerPage: {
-      type: Number,
-      required: true,
-    },
-    currentPage: {
       type: Number,
       required: true,
     },
@@ -61,17 +71,26 @@ export default {
     };
   },
   computed: {
+    currentPage() {
+      return this.config.currentPage;
+    },
     isBackwardDisabled() {
       return this.currentPage === 1;
     },
     isForwardDisabled() {
       return this.currentPage === this.totalNumberOfPages;
     },
+    itemsPerPage() {
+      return this.config.itemsPerPage;
+    },
     totalNumberOfPages() {
       return Math.ceil(this.itemsTotalNumber / this.itemsPerPage);
     },
   },
   methods: {
+    emitChangeConfig(property) {
+      this.$emit('changeConfig', Object.assign(this.config, property));
+    },
     getOptionSelected(val) {
       return val === this.itemsPerPage;
     },
@@ -81,21 +100,16 @@ export default {
     goForward() {
       this.goToPage(this.currentPage + 1);
     },
-    goToPage(val) {
-      console.log('@@@@@@@@', val);
-      this.$emit('changeCurrentPage', val);
+    goToPage(page) {
+      this.emitChangeConfig({ currentPage: page });
     },
     pageButtonClass(page) {
-      return `button ${
-        page === this.currentPage ? 'is-info is-selected' : ''
-      }`;
+      return `button ${page === this.currentPage ? 'is-info is-selected' : ''}`;
     },
     updateIpp(ev) {
-      this.$emit('changeItemsPerPage', Number(ev.target.value));
+      const ipp = Number(ev.target.value);
+      this.emitChangeConfig({ itemsPerPage: ipp });
     },
   },
 };
 </script>
-
-<style>
-</style>

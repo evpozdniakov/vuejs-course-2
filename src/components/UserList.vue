@@ -1,11 +1,8 @@
 <template>
   <div>
     <list-pagination
+      v-model="ippConfig"
       :items-total-number="users.length"
-      :items-per-page="ipp"
-      :current-page="currentPage"
-      @changeItemsPerPage="changeIpp"
-      @changeCurrentPage="changeCurrentPage"
     />
     <table class="table">
       <thead>
@@ -57,21 +54,24 @@ export default {
   },
   data() {
     return {
-      ipp: 10,
-      currentPage: 1,
+      ippConfig: {
+        currentPage: 1,
+        itemsPerPage: 10,
+      },
     };
+  },
+  computed: {
+    itemsTotalNumber() {
+      debugger;
+      return this.users.length;
+    },
   },
   methods: {
     applyPagination(items) {
-      const from = (this.currentPage - 1) * this.ipp;
+      const from =
+        (this.ippConfig.currentPage - 1) * this.ippConfig.itemsPerPage;
 
-      return items.slice(from, from + this.ipp);
-    },
-    changeCurrentPage(val) {
-      this.currentPage = val;
-    },
-    changeIpp(val) {
-      this.ipp = val;
+      return items.slice(from, from + this.ippConfig.itemsPerPage);
     },
     getUserFullName(user) {
       return `${user.firstName} ${user.lastName}`;
